@@ -2,31 +2,30 @@ import React from 'react';
 import styles from './sign-in-1-ui-styles/SignIn.module.css'
 
 interface SignInProps {
-    login: string
+    email: string
     password: string
     authenticationError: boolean
     rememberMe: boolean
-    errorMessage: string
-    onLoginChanged: (login: string) => void
+    errorMessage: undefined
+    onEmailChanged: (login: string) => void
     onPasswordChanged: (password: string) => void
     onRememberChange: (rememberMe: boolean) => void
     onSubmit: () => void
 }
 
 const SignIn: React.FC<SignInProps> = ({
-                                           login, password, authenticationError, errorMessage, rememberMe, //variables
-                                           onLoginChanged, onPasswordChanged, onRememberChange, onSubmit // callbacks
+                                           email, password, authenticationError, errorMessage, rememberMe, //variables
+                                           onEmailChanged, onPasswordChanged, onRememberChange, onSubmit // callbacks
                                        }) => {
-
     return (
         <div className={styles.wrapper}>
             <h2>Форма входа</h2>
             <div className={styles.forms}>
                 <div className={styles.form}>
-                    <span>Логин: </span>
-                    <input type={"login"} placeholder={'Имя пользователя'}
-                           value={login}
-                           onChange={e => onLoginChanged(e.currentTarget.value)}/>
+                    <span>Мэйл: </span>
+                    <input type={"email"} placeholder={'Адрес почты'}
+                           value={email}
+                           onChange={e => onEmailChanged(e.currentTarget.value)}/>
                 </div>
                 <div className={styles.form}>
                     <span>Пароль: </span>
