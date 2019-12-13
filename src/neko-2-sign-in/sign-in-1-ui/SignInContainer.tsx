@@ -1,9 +1,10 @@
-import React, {SyntheticEvent, useState} from 'react';
+import React, {useState} from 'react';
 import SignIn from "./SignIn";
 
 const SignInContainer: React.FC = () => {
     const [login, changeLogin] = useState('login');
     const [password, changePassword] = useState('test password');
+    const [isRememberMe, changeRememberMe] = useState(false);
     const [authenticationError, setAuthError] = useState(false);
     const [errorMessage, setErrorMessage] = useState('Имя пользователя или пароль введены не верно.');
     // logic
@@ -12,6 +13,9 @@ const SignInContainer: React.FC = () => {
     };
     const onPasswordChange = (password: string) => {
         changePassword(password)
+    };
+    const onRememberChange = (isRememberMe: boolean) => {
+        changeRememberMe(isRememberMe)
     };
     const onSubmitLogin = () => {
         if (password.length < 7) {
@@ -22,8 +26,8 @@ const SignInContainer: React.FC = () => {
     };
 
     return (
-        <SignIn login={login} password={password} authenticationError={authenticationError} errorMessage={errorMessage}
-                onLoginChanged={onLoginChange} onPasswordChanged={onPasswordChange} onSubmit={onSubmitLogin}/>
+        <SignIn rememberMe={isRememberMe} login={login} password={password} authenticationError={authenticationError} errorMessage={errorMessage}
+                onLoginChanged={onLoginChange} onPasswordChanged={onPasswordChange} onSubmit={onSubmitLogin} onRememberChange={onRememberChange}/>
     );
 };
 
