@@ -4,38 +4,38 @@ interface RegisterProps {
 
 }
 
-const Register: React.FC<RegisterProps> = ({}) => {
+interface RegisterProps {
+    email: string,
+    passwordFirst: string,
+    passwordSecond: string,
+    onSetEmail: (email: string) => void,
+    onSetFirstPassword: (passwordFirst: string) => void,
+    onSetSecondPassword: (passwordSecond: string) => void,
+    onSubmit: () => void
+}
+
+const Register: React.FC<RegisterProps> = ({email, passwordFirst, passwordSecond, onSetEmail, onSetFirstPassword, onSetSecondPassword, onSubmit}) => {
+
 
     return (
         <div>
             <h2>Форма регистрации</h2>
             <div>
                 <div>
-                    <span>E-mail: </span>
-                    <input type={"e-mail"} placeholder={'Your e-mail'}
-                        // value={''}
-                        // onChange={}
-                    />
+                    <span>E-mail: </span><input type={"e-mail"} placeholder={'Your e-mail'} value={email}
+                                                onChange={e => onSetEmail(e.currentTarget.value)}/>
                 </div>
                 <div>
-                    <span>First password: </span>
-                    <input type={"password"} placeholder={'Enter password'}
-                        // value={this.state.password}
-                        // onChange={this.onPasswordChanged}
-                    />
+                    <span>First password: </span><input type={"password"} placeholder={'Enter password'}
+                                                        value={passwordFirst}
+                                                        onChange={e => onSetFirstPassword(e.currentTarget.value)}/>
                 </div>
                 <div>
-                    <span>Second password: </span>
-                    <input type={"password"} placeholder={'Enter password'}
-                        // value={this.state.password}
-                        // onChange={this.onPasswordChanged}
-                    />
+                    <span>Second password: </span><input type={"password"} placeholder={'Enter password'}
+                                                         value={passwordSecond}
+                                                         onChange={e => onSetSecondPassword(e.currentTarget.value)}/>
                 </div>
-                {/*{this.props.authenticationError && <mark>Имя пользователя или пароль введены не верно.</mark>}*/}
-                <button
-                    // onClick={this.onSubmit}
-                >Register
-                </button>
+                <button onClick={onSubmit}>Register</button>
             </div>
         </div>
     );
