@@ -6,5 +6,7 @@ const instance = axios.create({
 });
 
 export const RegisterAPI = {
-
+    getSuccessRegister(email: string, password: string) {
+        return instance.post(`auth/register`, {email, password})
+    },
 };
