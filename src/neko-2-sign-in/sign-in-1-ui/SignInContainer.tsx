@@ -5,7 +5,8 @@ const SignInContainer: React.FC = () => {
     // logic
 
     return (
-        <SignIn/>
+        <SignIn login={''} password={''} authenticationError={false}
+                onLoginChanged={()=>{}} onPasswordChanged={()=>{}} onSubmit={()=>{}}  />
     );
 };
 
