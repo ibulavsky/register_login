@@ -6,7 +6,7 @@ interface SignInProps {
     password: string
     authenticationError: boolean
     rememberMe: boolean
-    errorMessage: undefined
+    errorMessage: string | undefined
     onEmailChanged: (login: string) => void
     onPasswordChanged: (password: string) => void
     onRememberChange: (rememberMe: boolean) => void

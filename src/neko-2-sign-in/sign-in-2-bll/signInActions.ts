@@ -1,4 +1,5 @@
-export const LOGINSUCCESS = "REGISTER-LOGIN-RESPONSE/SING-IN/LOGIN-SUCCESS";
+export const LOGIN_SUCCESS = "REGISTER-LOGIN-RESPONSE/SING-IN/LOGIN-SUCCESS";
+export const LOGIN_ERROR = "REGISTER-LOGIN-RESPONSE/SING-IN/LOGIN_ERROR";
 
 interface IObjResponse {
     name: string
@@ -7,15 +8,25 @@ interface IObjResponse {
 }
 
 interface ILoginSuccessAction {
-    type: string;
+    type: typeof LOGIN_SUCCESS;
     obj: IObjResponse
 }
 
-export type ISignInActions = ILoginSuccessAction;
+interface ILoginErrorAction {
+    type: typeof LOGIN_ERROR;
+    error: string
+}
+
+export type ISignInActions = ILoginSuccessAction | ILoginErrorAction ;
 
 export const loginSuccess = (obj: IObjResponse) => {
     return {
-        type: LOGINSUCCESS, obj
+        type: LOGIN_SUCCESS, obj
     }
 };
 
+export const loginError = (error: string) => {
+    return {
+        type: LOGIN_ERROR, error
+    }
+};

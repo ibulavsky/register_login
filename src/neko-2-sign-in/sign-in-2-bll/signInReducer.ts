@@ -1,19 +1,24 @@
 import {signInInitialState} from "./signInInitialState";
-import {
-    ISignInActions, LOGINSUCCESS
-} from "./signInActions";
+import {ISignInActions, LOGIN_ERROR, LOGIN_SUCCESS} from "./signInActions";
 
 export const signInReducer = (state = signInInitialState, action: ISignInActions) => {
     switch (action.type) {
-        case LOGINSUCCESS :
+        case LOGIN_SUCCESS :
             return {
                 ...state,
-                // name: action.obj.name,
                 isAuth: true,
                 isError: false,
-                // token: action.obj.token,
-                errorMessage: action.obj.error
+                errorMessage: undefined,
+                username: action.obj.name
             };
+        case LOGIN_ERROR :
+            return {
+                ...state,
+                isAuth: false,
+                isError: true,
+                errorMessage: action.error
+            };
+
         default: {
             return state;
         }

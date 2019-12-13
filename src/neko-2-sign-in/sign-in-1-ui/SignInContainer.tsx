@@ -3,11 +3,13 @@ import SignIn from "./SignIn";
 import {connect} from "react-redux";
 import {IAppStore} from "../../neko-1-main/main-2-bll/store";
 import {loginThunk} from "../sign-in-2-bll/signInThunks";
+import {Redirect} from 'react-router-dom';
+import {NEKO_PATH} from "../../neko-1-main/main-1-ui/Routes";
 
 interface SignInContainerIProps {
     isAuth: boolean
     isError: boolean
-    errorMessage: undefined
+    errorMessage: string | undefined
     loginThunk: (email: string, password: string, isRememberMe: boolean) => void
 }
 
@@ -34,12 +36,14 @@ const SignInContainer: React.FC<SignInContainerIProps> = (props) => {
     return (
         <>
             {
-                props.isAuth ? <div> Success </div> :
-                    <SignIn rememberMe={isRememberMe} email={email} password={password}
-                            authenticationError={props.isError}
-                            errorMessage={props.errorMessage}
-                            onEmailChanged={onEmailChange} onPasswordChanged={onPasswordChange} onSubmit={onSubmitLogin}
-                            onRememberChange={onRememberChange}/>
+                props.isAuth
+                    ? <Redirect to={NEKO_PATH}/>
+                    : <SignIn rememberMe={isRememberMe} email={email} password={password}
+                              authenticationError={props.isError}
+                              errorMessage={props.errorMessage}
+                              onEmailChanged={onEmailChange} onPasswordChanged={onPasswordChange}
+                              onSubmit={onSubmitLogin}
+                              onRememberChange={onRememberChange}/>
 
             }
         </>
