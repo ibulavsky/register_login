@@ -5,10 +5,12 @@ import {IAppStore} from "../../neko-1-main/main-2-bll/store";
 import {loginThunk} from "../sign-in-2-bll/signInThunks";
 import {Redirect} from 'react-router-dom';
 import {NEKO_PATH} from "../../neko-1-main/main-1-ui/Routes";
+import Preloader from "../../neko-0-common/common-1-ui/Preloader";
 
 interface SignInContainerIProps {
     isAuth: boolean
     isError: boolean
+    isFetching: boolean
     errorMessage: string | undefined
     loginThunk: (email: string, password: string, isRememberMe: boolean) => void
 }
@@ -35,8 +37,9 @@ const SignInContainer: React.FC<SignInContainerIProps> = (props) => {
 
     return (
         <>
-            {
-                props.isAuth
+            {props.isFetching
+                ? <Preloader/>
+                : props.isAuth
                     ? <Redirect to={NEKO_PATH}/>
                     : <SignIn rememberMe={isRememberMe} email={email} password={password}
                               authenticationError={props.isError}
@@ -53,7 +56,8 @@ const SignInContainer: React.FC<SignInContainerIProps> = (props) => {
 const mapStateToProps = (store: IAppStore) => ({
     isAuth: store.signIn.isAuth,
     isError: store.signIn.isError,
-    errorMessage: store.signIn.errorMessage
+    isFetching: store.signIn.isFetching,
+    errorMessage: store.signIn.errorMessage,
 });
 
 export default connect(mapStateToProps, {loginThunk})(SignInContainer);
