@@ -11,10 +11,11 @@ interface RegisterProps {
     onSetEmail: (email: string) => void,
     onSetFirstPassword: (passwordFirst: string) => void,
     onSetSecondPassword: (passwordSecond: string) => void,
-    onSubmit: () => void
+    onSubmit: () => void,
+    errorMessage: string
 }
 
-const Register: React.FC<RegisterProps> = ({email, passwordFirst, passwordSecond, onSetEmail, onSetFirstPassword, onSetSecondPassword, onSubmit}) => {
+const Register: React.FC<RegisterProps> = ({email, passwordFirst, passwordSecond, onSetEmail, onSetFirstPassword, onSetSecondPassword, onSubmit, errorMessage}) => {
 
 
     return (
@@ -35,6 +36,7 @@ const Register: React.FC<RegisterProps> = ({email, passwordFirst, passwordSecond
                                                          value={passwordSecond}
                                                          onChange={e => onSetSecondPassword(e.currentTarget.value)}/>
                 </div>
+                <div>{errorMessage}</div>
                 <button onClick={onSubmit}>Register</button>
             </div>
         </div>
