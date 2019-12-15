@@ -24,7 +24,6 @@ export const signInReducer = (state = signInInitialState, action: ISignInActions
                 isFetching: action.isFetching
             }
         }
-
         default: {
             return state;
         }

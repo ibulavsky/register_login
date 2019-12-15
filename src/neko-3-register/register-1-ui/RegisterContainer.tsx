@@ -1,13 +1,17 @@
 import React, {useState} from 'react';
 import Register from './Register';
+import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {register} from "../register-2-bll/registerThunks";
-
-// import {registerInitialState} from "../register-2-bll/registerInitialState";
+import {IAppStore} from "../../neko-1-main/main-2-bll/store";
+import {SIGN_IN_PATH} from '../../neko-1-main/main-1-ui/Routes';
+import Preloader from "../../neko-0-common/common-1-ui/Preloader";
 
 interface IPropsRegister {
     success: boolean,
-    register: (email: string, passwordFirst: string, passwordSecond: string) => void
+    register: (email: string, passwordFirst: string, passwordSecond: string) => void,
+    errorMessage: string,
+    isFetching: boolean
 }
 
 const RegisterContainer: React.FC<IPropsRegister> = (props) => {
@@ -30,19 +34,22 @@ const RegisterContainer: React.FC<IPropsRegister> = (props) => {
     };
     return (
         <>
-            {props.success ? <div>Ты зареган</div> :
-                <Register email={email} passwordFirst={passwordFirst} passwordSecond={passwordSecond}
-                          onSetEmail={onSetEmail}
-                          onSetFirstPassword={onSetFirstPassword} onSetSecondPassword={onSetSecondPassword}
-                          onSubmit={onSubmit}/>}
-
+            {props.isFetching
+                ? <Preloader/>
+                : props.success ? <Redirect to={SIGN_IN_PATH}/> :
+                    <Register email={email} passwordFirst={passwordFirst} passwordSecond={passwordSecond}
+                              onSetEmail={onSetEmail}
+                              onSetFirstPassword={onSetFirstPassword} onSetSecondPassword={onSetSecondPassword}
+                              onSubmit={onSubmit} errorMessage={props.errorMessage}/>}
         </>
     );
 };
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (store: IAppStore) => {
     return {
-        success: state.register.success
+        success: store.register.success,
+        errorMessage: store.register.errorMessage,
+        isFetching: store.register.isFetching
     }
 };
 
