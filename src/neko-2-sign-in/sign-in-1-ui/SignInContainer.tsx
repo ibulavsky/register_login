@@ -40,7 +40,7 @@ const SignInContainer: React.FC<SignInContainerIProps> = (props) => {
         const isPasswordValid = password.length >= 6;
         let errorText;
         errorText = isEmailValid ? '' : 'Email is invalid.';
-        errorText = errorText + (isPasswordValid ? '' : `/nPassword must be 6 or more symbols.`);
+        errorText = errorText + (isPasswordValid ? '' : '\nPassword must be 6 or more symbols.');
         if (errorText) {
             setErrorMessage(errorText);
             return false
