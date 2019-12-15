@@ -4,7 +4,6 @@ import styles from './sign-in-1-ui-styles/SignIn.module.css'
 interface SignInProps {
     email: string
     password: string
-    authenticationError: boolean
     rememberMe: boolean
     errorMessage: string | undefined
     onEmailChanged: (login: string) => void
@@ -14,7 +13,7 @@ interface SignInProps {
 }
 
 const SignIn: React.FC<SignInProps> = ({
-                                           email, password, authenticationError, errorMessage, rememberMe, //variables
+                                           email, password, errorMessage, rememberMe, //variables
                                            onEmailChanged, onPasswordChanged, onRememberChange, onSubmit // callbacks
                                        }) => {
     return (
@@ -39,7 +38,7 @@ const SignIn: React.FC<SignInProps> = ({
                            checked={rememberMe}
                            onChange={e => onRememberChange(e.currentTarget.checked)}/>
                 </div>
-                {authenticationError && <mark>{errorMessage}</mark>}
+                {errorMessage && <mark>{errorMessage}</mark>}
                 <button className={styles.button} onClick={onSubmit}>Войти</button>
             </div>
         </div>

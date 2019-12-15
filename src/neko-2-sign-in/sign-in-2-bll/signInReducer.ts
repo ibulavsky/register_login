@@ -7,7 +7,6 @@ export const signInReducer = (state = signInInitialState, action: ISignInActions
             return {
                 ...state,
                 isAuth: true,
-                isError: false,
                 errorMessage: undefined,
                 username: action.obj.name
             };
@@ -15,7 +14,6 @@ export const signInReducer = (state = signInInitialState, action: ISignInActions
             return {
                 ...state,
                 isAuth: false,
-                isError: true,
                 errorMessage: action.error
             };
         case TOGGLE_IS_FETCHING: {
