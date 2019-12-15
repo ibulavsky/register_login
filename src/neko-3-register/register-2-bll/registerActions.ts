@@ -1,18 +1,16 @@
 import {REGISTER_USER_DATA} from "./registerReducer";
 
-interface ISomeAction {
-    type: string
+interface IRegisterAction {
+    type: typeof REGISTER_USER_DATA,
+    success: boolean
 }
 
-export type IRegisterActions = ISomeAction;
+export type IRegisterActions = IRegisterAction;
 
-export const registerUserData = (email: string, password: string) => {
+export const registerUserData = (success: boolean) => {
     return {
         type: REGISTER_USER_DATA,
-        payload: {
-            email,
-            password,
-        }
+        success
     }
 };
 

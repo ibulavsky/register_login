@@ -1,9 +1,7 @@
 export interface IRegisterState {
-    email: string,
-    password: string,
+    success: boolean
 }
 
 export const registerInitialState: IRegisterState = {
-    email: '',
-    password: ''
+    success: false
 };

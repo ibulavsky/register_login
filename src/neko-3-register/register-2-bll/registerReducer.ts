@@ -8,10 +8,11 @@ export const registerReducer = (state = registerInitialState, action: IRegisterA
         case REGISTER_USER_DATA:
             return {
                 ...state,
-                // ...action.payload,
+                success: action.success
             };
         default: {
             return state;
         }
     }
 };
+
