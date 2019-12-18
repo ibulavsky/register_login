@@ -8,9 +8,8 @@ type Return = void;
 type ExtraArgument = {};
 type IGetStore = () => IAppStore;
 
-export const register = (email: string, passwordFirst: string, passwordSecond: string): ThunkAction<Return, IAppStore, ExtraArgument, IRegisterActions> =>
+export const register = (email: string, passwordFirst: string): ThunkAction<Return, IAppStore, ExtraArgument, IRegisterActions> =>
     async (dispatch: ThunkDispatch<IAppStore, ExtraArgument, IRegisterActions | INekoActions>, getStore: IGetStore) => {
-        if (passwordFirst === passwordSecond) {
             dispatch(toogleIsFetching(true));
             const response = await RegisterAPI.getSuccessRegister(email, passwordFirst);
             dispatch(toogleIsFetching(false));
@@ -19,7 +18,4 @@ export const register = (email: string, passwordFirst: string, passwordSecond: s
             } else {
                 dispatch(registerError(response.data.error))
             }
-        } else {
-            dispatch(registerError('Введенные пароли отличаются'))
-        }
     };
