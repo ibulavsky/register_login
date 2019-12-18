@@ -30,4 +30,9 @@ export const registerValidate = (email: string, passwordFirst: string, passwordS
     let errorText = emailValidate(email) + passwordLengthValidate(passwordFirst) + passwordEqualityValidate(passwordFirst, passwordSecond);
     return errorText
 };
+export const loginValidate = (email: string, password: string,) => {
+    let errorText = emailValidate(email) + passwordLengthValidate(password);
+    // return error message '' or 'error email'
+    return errorText;
+};
 

@@ -6,6 +6,7 @@ import {loginThunk} from "../sign-in-2-bll/signInThunks";
 import {Redirect} from 'react-router-dom';
 import {NEKO_PATH} from "../../neko-1-main/main-1-ui/Routes";
 import Preloader from "../../neko-0-common/common-1-ui/Preloader";
+import {loginValidate} from "../../neko-0-common/validators/validator";
 
 interface SignInContainerIProps {
     isAuth: boolean
@@ -30,23 +31,13 @@ const SignInContainer: React.FC<SignInContainerIProps> = (props) => {
         changeRememberMe(isRememberMe)
     };
     const onSubmitLogin = () => {
-        if (loginValidate(email, password)) {
+        const errorText =loginValidate(email, password);
+        if (errorText) {
+            setErrorMessage(errorText)
+        } else {
+            setErrorMessage('');
             props.loginThunk(email, password, isRememberMe)
         }
-    };
-
-    const loginValidate = (email: string, password: string) => {
-        const isEmailValid = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-        const isPasswordValid = password.length >= 6;
-        let errorText;
-        errorText = isEmailValid ? '' : 'Email is invalid.';
-        errorText = errorText + (isPasswordValid ? '' : '\nPassword must be 6 or more symbols.');
-        if (errorText) {
-            setErrorMessage(errorText);
-            return false
-        }
-        setErrorMessage('');
-        return true
     };
 
     return (
