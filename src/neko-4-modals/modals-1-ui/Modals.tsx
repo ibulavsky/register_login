@@ -20,6 +20,12 @@ const Modal: React.FC<IModal> = ({children, show, blackout}) => {
                 opacity: "0.1"}}></div>}
             <div style={{
                 position: "fixed",
+                display: 'flex',
+                alignItems: "center",
+                justifyContent: "center",
+                width: '300px',
+                height: '200px',
+                backgroundColor: "green"
             }}>
                 {children}
             </div>
