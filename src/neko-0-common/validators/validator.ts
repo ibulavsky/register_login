@@ -12,7 +12,7 @@
 //     return true
 // };
 
-const emailValidate = (email: string) => {
+export const emailValidate = (email: string) => {
     const isEmailValid = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
     return isEmailValid ? '' : 'Email is invalid.';
 };

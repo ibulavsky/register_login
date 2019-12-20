@@ -6,5 +6,7 @@ const instance = axios.create({
 });
 
 export const ForgotAPI = {
-
+    sendMessageMail(email: string) {
+        return instance.post(`auth/forgot`, {email})
+    },
 };
