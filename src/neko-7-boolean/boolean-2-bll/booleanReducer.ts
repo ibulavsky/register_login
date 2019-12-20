@@ -10,7 +10,7 @@ const replaceBooleanObject = (booleanObject: IBooleanObject, state: IBooleanStat
     return booleansArr
 };
 
-export const booleanReducer = (state = booleanInitialState, action: IBooleanActions | any) => {
+export const booleanReducer = (state = booleanInitialState, action: IBooleanActions) => {
     switch (action.type) {
         case ADD_BOOLEAN_OBJECT:
             return {

@@ -14,7 +14,7 @@ interface IBooleanObjectAction {
     booleanObject: IBooleanObject;
 }
 
-export type IBooleanActions = IBooleanObjectAction| ISomeAction;
+export type IBooleanActions = IBooleanObjectAction;
 
 export const addBoolean = (booleanObject: IBooleanObject) => {
     return {

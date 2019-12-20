@@ -19,8 +19,8 @@ export const booleanInitialState: IBooleanState = {
         },
         {
             name: ERROR,
-            value: true,
-            message: 'sd'
+            value: false,
+            message: ''
         },
         {
             name: SUCCESS,

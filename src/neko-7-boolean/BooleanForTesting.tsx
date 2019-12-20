@@ -7,12 +7,12 @@ import {IBooleanObject} from "./boolean-2-bll/booleanInitialState";
 
 interface BooleanContainerIProps {
     isLoading: boolean
-    errorMessage: string
+    errorMessage: string | undefined
     isSuccess: boolean
     addBoolean: (booleanObject: IBooleanObject) => void
 }
 
-const BooleanForTesting: React.FC<BooleanContainerIProps | any> = (props) => {
+const BooleanForTesting: React.FC<BooleanContainerIProps> = (props) => {
     // const [email, changeEmail] = useState('email');
     // const [password, changePassword] = useState('test password');
     // const [isRememberMe, changeRememberMe] = useState(false);

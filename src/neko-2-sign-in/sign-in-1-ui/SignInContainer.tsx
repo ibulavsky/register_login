@@ -7,6 +7,7 @@ import {Redirect} from 'react-router-dom';
 import {NEKO_PATH} from "../../neko-1-main/main-1-ui/Routes";
 import Preloader from "../../neko-0-common/common-1-ui/Preloader";
 import {loginValidate} from "../../neko-0-common/validators/validator";
+import {LOADING, ERROR, SUCCESS} from "../../neko-7-boolean/boolean-2-bll/booleanActions";
 
 interface SignInContainerIProps {
     isAuth: boolean
@@ -31,7 +32,7 @@ const SignInContainer: React.FC<SignInContainerIProps> = (props) => {
         changeRememberMe(isRememberMe)
     };
     const onSubmitLogin = () => {
-        const errorText =loginValidate(email, password);
+        const errorText = loginValidate(email, password);
         if (errorText) {
             setErrorMessage(errorText)
         } else {
@@ -39,7 +40,7 @@ const SignInContainer: React.FC<SignInContainerIProps> = (props) => {
             props.loginThunk(email, password, isRememberMe)
         }
     };
-
+    console.log(props);
     return (
         <>
             {props.isFetching
@@ -58,9 +59,9 @@ const SignInContainer: React.FC<SignInContainerIProps> = (props) => {
 };
 
 const mapStateToProps = (store: IAppStore) => ({
-    isAuth: store.signIn.isAuth,
-    isFetching: store.signIn.isFetching,
-    errorMessage: store.signIn.errorMessage,
+    isAuth: store.boolean.booleans.filter(b => b.name === SUCCESS)[0].value,
+    isFetching: store.boolean.booleans.filter(b => b.name === LOADING)[0].value,
+    errorMessage: store.boolean.booleans.filter(b => b.name === ERROR)[0].message,
 });
 
 export default connect(mapStateToProps, {loginThunk})(SignInContainer);
