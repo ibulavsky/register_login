@@ -1,25 +1,22 @@
-import {booleanInitialState} from "./booleanInitialState";
-import {IBooleanActions} from "./booleanActions";
+import {booleanInitialState, IBooleanObject, IBooleanState} from "./booleanInitialState";
+import {ADD_BOOLEAN_OBJECT, IBooleanActions} from "./booleanActions";
 
 
-export const booleanReducer = (state = booleanInitialState, action: IBooleanActions) => {
+const replaceBooleanObject = (booleanObject: IBooleanObject, state: IBooleanState) => {
+    let booleansArr = [...state.booleans].filter(b => {
+        return b.name !== booleanObject.name
+    });
+    booleansArr.push(booleanObject);
+    return booleansArr
+};
+
+export const booleanReducer = (state = booleanInitialState, action: IBooleanActions | any) => {
     switch (action.type) {
-        // case SUCCESS:
-        //     return {
-        //         ...state,
-        //         success: action.success
-        //     };
-        // case ERROR :
-        //     return {
-        //         ...state,
-        //         errorMessage: action.errorMessage
-        //     };
-        // case TOGGLE_IS_LOADING: {
-        //     return {
-        //         ...state,
-        //         isFetching: action.isFetching
-        //     }
-        // }
+        case ADD_BOOLEAN_OBJECT:
+            return {
+                ...state,
+                booleans: replaceBooleanObject(action.booleanObject, state)
+            };
         default: {
             return state;
         }
