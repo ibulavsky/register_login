@@ -8,8 +8,7 @@ const ModalContainer: React.FC = () => {
         <>
             <button onClick={() => setShow(true)}>show simple Modal</button>
             <Modals show={show} blackout={true}>
-                Simple Modal
-                <button onClick={() => setShow(false)}>Close</button>
+                Simple Modal:<button onClick={() => setShow(false)}>Close</button>
             </Modals>
         </>
     );

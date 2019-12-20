@@ -1,5 +1,6 @@
 import React from 'react';
 import ModalsContainer from "./ModalsContainer";
+import ModalsInput from "./ModalsInput";
 
 const ModalsPage: React.FC = () => {
 
@@ -9,10 +10,10 @@ const ModalsPage: React.FC = () => {
             flexFlow: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-        }}
-        >
+        }}>
             <div style={{height: '40vh'}}/>
             <ModalsContainer/>
+            <ModalsInput/>
             <div style={{height: '50vh'}}/>
         </div>
     );
