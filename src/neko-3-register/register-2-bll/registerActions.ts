@@ -1,5 +1,5 @@
 import {REGISTER_ERROR, REGISTER_USER_DATA, TOGGLE_IS_FETCHING} from "./registerReducer";
-import {LOGIN_ERROR} from "../../neko-2-sign-in/sign-in-2-bll/signInActions";
+// import {LOGIN_ERROR} from "../../neko-2-sign-in/sign-in-2-bll/signInActions";
 
 interface IRegisterUserDataAction {
     type: typeof REGISTER_USER_DATA,

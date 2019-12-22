@@ -1,4 +1,7 @@
-import {ERROR, LOADING, SUCCESS} from "./booleanActions";
+import {
+    LOGIN_ERROR, LOGIN_IS_LOADING, LOGIN_SUCCESS,
+    REGISTER_IS_LOADING, REGISTER_SUCCESS, REGISTER_ERROR, FORGOT_IS_LOADING, FORGOT_SUCCESS, FORGOT_ERROR
+} from "./booleanActions";
 
 export interface IBooleanObject {
     name: string;
@@ -13,17 +16,44 @@ export interface IBooleanState {
 export const booleanInitialState: IBooleanState = {
     booleans: [
         {
-            name: LOADING,
+            name: LOGIN_IS_LOADING,
             value: false,
-            // message: ''
         },
         {
-            name: ERROR,
+            name: LOGIN_ERROR,
             value: false,
             message: ''
         },
         {
-            name: SUCCESS,
+            name: LOGIN_SUCCESS,
+            value: false,
+            message: ''
+        },
+        {
+            name: REGISTER_IS_LOADING,
+            value: false,
+        },
+        {
+            name: REGISTER_ERROR,
+            value: false,
+            message: ''
+        },
+        {
+            name: REGISTER_SUCCESS,
+            value: false,
+            message: ''
+        },
+        {
+            name: FORGOT_IS_LOADING,
+            value: false,
+        },
+        {
+            name: FORGOT_ERROR,
+            value: false,
+            message: ''
+        },
+        {
+            name: FORGOT_SUCCESS,
             value: false,
             message: ''
         },

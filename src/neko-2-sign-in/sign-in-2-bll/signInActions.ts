@@ -1,43 +1,45 @@
-export const LOGIN_SUCCESS = "REGISTER-LOGIN-RESPONSE/SING-IN/LOGIN-SUCCESS";
-export const LOGIN_ERROR = "REGISTER-LOGIN-RESPONSE/SING-IN/LOGIN_ERROR";
-export const TOGGLE_IS_FETCHING = "REGISTER-LOGIN-RESPONSE/SING-IN/TOGGLE_IS_FETCHING";
+// import {LOGIN_ERROR, LOGIN_IS_LOADING, LOGIN_SUCCESS} from "../../neko-7-boolean/boolean-2-bll/booleanActions";
+//
+// interface IObjResponse {
+//     name: string
+//     token: string
+//     error: undefined
+// }
 
-interface IObjResponse {
-    name: string
-    token: string
-    error: undefined
+interface ISomeAction {
+    type: string;
 }
+//
+// interface ILoginSuccessAction {
+//     type: typeof LOGIN_SUCCESS;
+//     obj: IObjResponse
+// }
+//
+// interface ILoginErrorAction {
+//     type: typeof LOGIN_ERROR;
+//     error: string
+// }
+//
+// interface IToggleIsFetchingAction {
+//     type: typeof TOGGLE_IS_FETCHING;
+//     isFetching: boolean
+// }
 
-interface ILoginSuccessAction {
-    type: typeof LOGIN_SUCCESS;
-    obj: IObjResponse
-}
+export type ISignInActions = ISomeAction ;
 
-interface ILoginErrorAction {
-    type: typeof LOGIN_ERROR;
-    error: string
-}
-
-interface IToggleIsFetchingAction {
-    type: typeof TOGGLE_IS_FETCHING;
-    isFetching: boolean
-}
-
-export type ISignInActions = ILoginSuccessAction | ILoginErrorAction | IToggleIsFetchingAction ;
-
-export const loginSuccess = (obj: IObjResponse) => {
-    return {
-        type: LOGIN_SUCCESS, obj
-    }
-};
-
-export const loginError = (error: string) => {
-    return {
-        type: LOGIN_ERROR, error
-    }
-};
-export const toogleIsFetching = (isFetching: boolean) => {
-    return {
-        type: TOGGLE_IS_FETCHING, isFetching
-    }
-};
+// export const loginSuccess = (obj: IObjResponse) => {
+//     return {
+//         type: LOGIN_SUCCESS, obj
+//     }
+// };
+//
+// export const loginError = (error: string) => {
+//     return {
+//         type: LOGIN_ERROR, error
+//     }
+// };
+// export const loginIsLoading = (isLoading: boolean) => {
+//     return {
+//         type: LOGIN_IS_LOADING, isLoading
+//     }
+// };
