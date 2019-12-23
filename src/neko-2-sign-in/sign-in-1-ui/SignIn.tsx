@@ -38,7 +38,7 @@ const SignIn: React.FC<SignInProps> = ({
                            checked={rememberMe}
                            onChange={e => onRememberChange(e.currentTarget.checked)}/>
                 </div>
-                {errorMessage && <mark>{errorMessage}</mark>}
+                {errorMessage && <pre className={styles.error}>{errorMessage}</pre>}
                 <button className={styles.button} onClick={onSubmit}>Войти</button>
             </div>
         </div>

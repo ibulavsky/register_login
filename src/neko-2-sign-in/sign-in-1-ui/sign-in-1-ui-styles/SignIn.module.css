@@ -22,3 +22,9 @@
 .button {
 
 }
+
+.error {
+    font-size: 16px;
+    font-style: italic;
+    color: red;
+}

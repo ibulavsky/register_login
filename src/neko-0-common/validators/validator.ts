@@ -14,7 +14,7 @@
 
 const emailValidate = (email: string) => {
     const isEmailValid = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-    return isEmailValid ? '' : 'Email is invalid.';
+    return isEmailValid ? '' : '\nEmail is invalid.';
 };
 
 const passwordLengthValidate = (password: string) => {

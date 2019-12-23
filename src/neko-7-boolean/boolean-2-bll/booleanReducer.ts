@@ -1,7 +1,6 @@
 import {booleanInitialState, IBooleanObject, IBooleanState} from "./booleanInitialState";
 import {ADD_BOOLEAN_OBJECT, IBooleanActions} from "./booleanActions";
 
-
 const replaceBooleanObject = (booleanObject: IBooleanObject, state: IBooleanState) => {
     let booleansArr = [...state.booleans].filter(b => {
         return b.name !== booleanObject.name
