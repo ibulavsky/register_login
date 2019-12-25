@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Modals from "./Modals";
+import Modals from "../ModalInput/ModalInput";
 
 const ModalInput: React.FC = () => {
     const [show, setShow] = useState(false);
@@ -9,12 +9,14 @@ const ModalInput: React.FC = () => {
 
 
     return (
-        <div style={{display: "flex", justifyContent: "center"}}>
+        <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
             <button onClick={() => setShow(true)}>show input Modal</button><div>{titleWord}-</div><div>{firstWord}</div><div>-{secondWord}</div>
             <Modals show={show} blackout={true}>
                 <div style={{
                     display: "flex",
                     flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center"
                 }}>
                     Input Modal:
                     <input type="text" placeholder='Title' onChange={(e) => {

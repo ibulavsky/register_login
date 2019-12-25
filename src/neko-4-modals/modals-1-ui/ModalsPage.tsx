@@ -1,6 +1,8 @@
 import React from 'react';
-import ModalsContainer from "./ModalsContainer";
-import ModalsInput from "./ModalsInput";
+import ModalsContainer from "./ModalSimpleMessage/ModalsContainer";
+import ModalsInput from "./ModalInput/ModalsInput";
+import ModalMessage from "./ModalMessage/ModalsMessage";
+import ModalQuestion from "./ModalQuestion/ModalsQuestion";
 
 const ModalsPage: React.FC = () => {
 
@@ -10,11 +12,12 @@ const ModalsPage: React.FC = () => {
             flexFlow: 'column',
             alignItems: 'center',
             justifyContent: 'center',
+            height: '90vh'
         }}>
-            <div style={{height: '40vh'}}/>
             <ModalsContainer/>
             <ModalsInput/>
-            <div style={{height: '50vh'}}/>
+            <ModalMessage/>
+            <ModalQuestion/>
         </div>
     );
 };

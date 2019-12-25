@@ -28,12 +28,12 @@ const Modal: React.FC<IModal> = ({children, show, blackout, top}) => {
                 display: 'flex',
                 alignItems: "center",
                 justifyContent: "center",
-                width: '300px',
-                height: '200px',
+                width: '150px',
+                height: '100px',
                 backgroundColor: "green",
                 top: `${top}px`
             }}>
-                {children}
+                {children? children: <span>Message Modal</span>}
             </div>
         </>
     );
