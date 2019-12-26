@@ -5,7 +5,8 @@ interface IModalMessage {
     show: boolean,
     message: () => void,
     styleTop: () => string,
-    top: number
+    top: number,
+    step: number
 }
 
 const ModalMessageComponent: React.FC = () => {

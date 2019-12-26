@@ -21,7 +21,8 @@ const Modal: React.FC<IModal> = ({children, show, blackout, top}) => {
                 width: '100vw',
                 height: '100vh',
                 backgroundColor: "black",
-                opacity: "0.1"
+                opacity: "0.1",
+                zIndex: 10
             }}></div>}
             <div style={{
                 position: "fixed",
@@ -31,9 +32,10 @@ const Modal: React.FC<IModal> = ({children, show, blackout, top}) => {
                 width: '150px',
                 height: '100px',
                 backgroundColor: "green",
-                top: `${top}px`
+                top: `${top}px`,
+                zIndex: 11
             }}>
-                {children? children: <span>Message Modal</span>}
+                {children ? children : <span>Message Modal</span>}
             </div>
         </>
     );
