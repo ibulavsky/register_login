@@ -1,40 +1,54 @@
 import React, {useState} from 'react';
 import Forgot from './Forgot';
-import {IAppStore} from "../../neko-1-main/main-2-bll/store";
-import {connect} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {emailValidate} from "../../neko-0-common/validators/validator";
-import {forgotMailError} from "../forgot-2-bll/forgotActions";
 import {forgot} from "../forgot-2-bll/forgotThunks";
+import {FORGOT_ERROR} from "../forgot-2-bll/forgotActions";
+import {addBoolean} from "../../neko-7-boolean/boolean-2-bll/booleanActions";
+import {forgotErrorMessage, forgotLoading} from "../forgot-2-bll/forgotSelectors";
+import Preloader from "../../neko-0-common/common-1-ui/Preloader";
 
 
 interface IPropsForgotMail {
-    forgot: (email: string) => void,
-    forgotMailError: (errorMessage: string) => void,
-    errorMessage: string,
+    // forgot: (email: string) => void,
+    // forgotMailError: (errorMessage: string) => void,
+    // errorMessage: string,
 }
-const ForgotContainer: React.FC<IPropsForgotMail> = (props) => {
-    let [email, setEmail] = useState('Your-mail');
 
-    let onSetEmail = (email: string) => {
-        setEmail(email)
-    };
+const ForgotContainer: React.FC<IPropsForgotMail> = (props) => {
+    let [email, setEmail] = useState('mail@mail.com');
+
+    // redux
+    const dispatch = useDispatch();
+    const errorMessage = useSelector(forgotErrorMessage);
+    const isFetching = useSelector(forgotLoading);
+
+    let onSetEmail = (email: string) => setEmail(email);
 
     let onSubmit = () => {
         const verification = emailValidate(email);
         if (verification) {
-            props.forgotMailError(verification)
+            dispatch(addBoolean({name: FORGOT_ERROR, value: true, message: verification}))
         } else {
-            props.forgot(email)
+            dispatch(forgot(email))
         }
     };
     return (
-        <Forgot email={email} onSetEmail={onSetEmail} onSubmit={onSubmit} errorMessage={props.errorMessage}/>
+        <>
+            {isFetching
+                ? <Preloader/>
+                : <Forgot email={email}
+                          onSetEmail={onSetEmail}
+                          onSubmit={onSubmit}
+                          errorMessage={errorMessage}/>
+            }
+        </>
     );
 };
-const mapStateToProps = (store: IAppStore) => {
-    return {
-        errorMessage: store.forgot.errorMessage,
-    }
-};
+// const mapStateToProps = (store: IAppStore) => {
+//     return {
+//         errorMessage: store.forgot.errorMessage,
+//     }
+// };
 
-export default connect(mapStateToProps, {forgot,forgotMailError})(ForgotContainer);
+export default ForgotContainer;

@@ -4,7 +4,7 @@ interface ForgotProps {
     email: string,
     onSetEmail: (email: string) => void,
     onSubmit: () => void,
-    errorMessage: string
+    errorMessage: string | undefined
 }
 
 const Forgot: React.FC<ForgotProps> = ({email, onSetEmail, onSubmit, errorMessage}) => {
