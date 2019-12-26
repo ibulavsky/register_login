@@ -5,6 +5,8 @@ import {
     REGISTER_SUCCESS
 } from "../../neko-3-register/register-2-bll/registerActions";
 import {FORGOT_ERROR, FORGOT_SUCCESS, FORGOT_IS_LOADING} from '../../neko-4-forgot/forgot-2-bll/forgotActions'
+import {ERROR} from "./booleanActions";
+import {PROFILE_ERROR, PROFILE_LOADING} from "../../neko-6-neko/neko-2-bll/nekoActions";
 
 export interface IBooleanObject {
     name: string;
@@ -60,5 +62,19 @@ export const booleanInitialState: IBooleanState = {
             value: false,
             message: ''
         },
+        {
+            name: PROFILE_LOADING,
+            value: false,
+        },
+        {
+            name: PROFILE_ERROR,
+            value: false,
+            message: ''
+        },
+        // {
+        //     name: PROFILE_SUCCESS,
+        //     value: false,
+        //     message: ''
+        // },
     ],
 };
