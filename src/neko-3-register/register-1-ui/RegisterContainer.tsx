@@ -1,26 +1,29 @@
 import React, {useState} from 'react';
 import Register from './Register';
 import {Redirect} from 'react-router-dom';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {register} from "../register-2-bll/registerThunks";
-import {IAppStore} from "../../neko-1-main/main-2-bll/store";
 import {SIGN_IN_PATH} from '../../neko-1-main/main-1-ui/Routes';
 import Preloader from "../../neko-0-common/common-1-ui/Preloader";
 import {registerValidate} from "../../neko-0-common/validators/validator";
-import {registerError} from "../register-2-bll/registerActions";
+import {registerErrorMessage, registerLoading, registerSuccess} from "../register-2-bll/registerSelectors";
+import {addBoolean} from "../../neko-7-boolean/boolean-2-bll/booleanActions";
+import {REGISTER_ERROR} from "../register-2-bll/registerActions";
+
 
 interface IPropsRegister {
-    success: boolean,
-    register: (email: string, passwordFirst: string) => void,
-    registerError: (errorMessage: string) => void,
-    errorMessage: string,
-    isFetching: boolean,
-}
+    }
 
-const RegisterContainer: React.FC<IPropsRegister> = (props) => {
-    let [email, setEmail] = useState('Your-mail');
-    let [passwordFirst, setFirstPassword] = useState('Your password');
-    let [passwordSecond, setSecondPassword] = useState('Your password');
+const RegisterContainer: React.FC<IPropsRegister> = () => {
+    let [email, setEmail] = useState('mail@mail.com');
+    let [passwordFirst, setFirstPassword] = useState('');
+    let [passwordSecond, setSecondPassword] = useState('');
+
+    // redux
+    const dispatch = useDispatch();
+    const success = useSelector(registerSuccess);
+    const isFetching = useSelector(registerLoading);
+    const errorMessage = useSelector(registerErrorMessage);
 
     let onSetEmail = (email: string) => {
         setEmail(email)
@@ -35,30 +38,24 @@ const RegisterContainer: React.FC<IPropsRegister> = (props) => {
     let onSubmit = () => {
         const verification = registerValidate(email, passwordFirst, passwordSecond);
         if (verification) {
-            props.registerError(verification)
+            dispatch(addBoolean({name: REGISTER_ERROR, value: true, message: verification}))
+            // props.registerError(verification)
         } else {
-            props.register(email, passwordFirst)
+            dispatch(register(email, passwordFirst))
         }
     };
     return (
         <>
-            {props.isFetching
+            {isFetching
                 ? <Preloader/>
-                : props.success ? <Redirect to={SIGN_IN_PATH}/> :
+                : success ? <Redirect to={SIGN_IN_PATH}/> :
                     <Register email={email} passwordFirst={passwordFirst} passwordSecond={passwordSecond}
                               onSetEmail={onSetEmail}
                               onSetFirstPassword={onSetFirstPassword} onSetSecondPassword={onSetSecondPassword}
-                              onSubmit={onSubmit} errorMessage={props.errorMessage}/>}
+                              onSubmit={onSubmit} errorMessage={errorMessage}/>}
         </>
     );
 };
 
-const mapStateToProps = (store: IAppStore) => {
-    return {
-        success: store.register.success,
-        errorMessage: store.register.errorMessage,
-        isFetching: store.register.isFetching
-    }
-};
 
-export default connect(mapStateToProps, {register,registerError})(RegisterContainer);
+export default RegisterContainer;

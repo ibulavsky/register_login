@@ -1,7 +1,12 @@
 import {
-    REGISTER_IS_LOADING, REGISTER_SUCCESS, REGISTER_ERROR, FORGOT_IS_LOADING, FORGOT_SUCCESS, FORGOT_ERROR
+    FORGOT_IS_LOADING, FORGOT_SUCCESS, FORGOT_ERROR
 } from "./booleanActions";
 import {LOGIN_ERROR, LOGIN_IS_LOADING, LOGIN_SUCCESS} from "../../neko-2-sign-in/sign-in-2-bll/signInActions";
+import {
+    REGISTER_ERROR,
+    REGISTER_IS_LOADING,
+    REGISTER_SUCCESS
+} from "../../neko-3-register/register-2-bll/registerActions";
 
 export interface IBooleanObject {
     name: string;

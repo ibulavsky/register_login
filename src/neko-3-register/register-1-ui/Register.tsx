@@ -12,7 +12,7 @@ interface RegisterProps {
     onSetFirstPassword: (passwordFirst: string) => void,
     onSetSecondPassword: (passwordSecond: string) => void,
     onSubmit: () => void,
-    errorMessage: string
+    errorMessage: string | undefined
 }
 
 const Register: React.FC<RegisterProps> = ({email, passwordFirst, passwordSecond, onSetEmail, onSetFirstPassword, onSetSecondPassword, onSubmit, errorMessage}) => {
