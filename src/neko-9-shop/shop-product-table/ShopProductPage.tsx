@@ -1,15 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Table from "./table/Table";
+import {useDispatch, useSelector} from "react-redux";
+import {IAppStore} from "../../neko-1-main/main-2-bll/store";
+import {getShop} from "../shop-2-bll/shopThunks";
 
 const ShopProductPage: React.FC = () => {
 
-    const arrData = [{product: 'car', price: 40000}, {product: 'car2', price: 40000}, {product: 'car3', price: 40000}];
+    const productsData = useSelector((store: IAppStore) => store.shop.data.products);
+
+    const dispatch = useDispatch();
+    useEffect( () => {
+        dispatch(getShop());
+    }, []);
 
     const model = [
         {
             title: (i: number) => <div style={{width: '33%'}}> Product </div>,
             render: (dataItem: any, modelIndex: number, dataIndex: number) => <div
-                style={{width: '33%'}}> {dataItem.product}</div>
+                style={{width: '33%'}}> {dataItem.productName}</div>
         },
         {
             title: (i: number) => <div style={{width: '33%'}}> Price </div>,
@@ -29,7 +37,7 @@ const ShopProductPage: React.FC = () => {
     return (
         <>
             <Table model={model}
-                   data={arrData}/>
+                   data={productsData}/>
         </>
     );
 };

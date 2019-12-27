@@ -25,7 +25,7 @@ interface IGetShopAction {
 export type IShopActions = IGetShopAction;
 
 
-export const getShopData = (data: IShopData) => {
+export const getShopData = (data: IShopData): IShopActions => {
     return {
         type: GET_SHOP_DATA,
         data

@@ -10,16 +10,16 @@ export const shopReducer = (state = shopInitialState, action: IShopActions) => {
                 data: action.data
             };
         // case REGISTER_ERROR :
-        //     return {
-        //         ...state,
-        //         errorMessage: action.errorMessage
-        //     };
-        // case TOGGLE_IS_FETCHING: {
-        //     return {
-        //         ...state,
-        //         isFetching: action.isFetching
-        //     }
-        // }
+        //         //     return {
+        //         //         ...state,
+        //         //         errorMessage: action.errorMessage
+        //         //     };
+        //         // case TOGGLE_IS_FETCHING: {
+        //         //     return {
+        //         //         ...state,
+        //         //         isFetching: action.isFetching
+        //         //     }
+        //         // }
         default: {
             return state;
         }
