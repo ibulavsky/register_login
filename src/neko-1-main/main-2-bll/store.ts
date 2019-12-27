@@ -5,6 +5,7 @@ import {registerReducer} from "../../neko-3-register/register-2-bll/registerRedu
 import {forgotReducer} from "../../neko-4-forgot/forgot-2-bll/forgotReducer";
 import {nekoReducer} from "../../neko-6-neko/neko-2-bll/nekoReducer";
 import {booleanReducer} from "../../neko-7-boolean/boolean-2-bll/booleanReducer";
+import {shopReducer} from "../../neko-9-shop/shop-2-bll/shopReducer";
 
 const reducers = combineReducers({
     signIn: signInReducer,
@@ -12,6 +13,7 @@ const reducers = combineReducers({
     forgot: forgotReducer,
     neko: nekoReducer,
     boolean: booleanReducer,
+    shop: shopReducer,
 });
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware));
