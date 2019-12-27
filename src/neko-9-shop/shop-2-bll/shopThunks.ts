@@ -19,7 +19,7 @@ export const addProduct = (name: string, price: number): ThunkAction<Return, IAp
     async (dispatch: ThunkDispatch<IAppStore, ExtraArgument, IShopActions>, getStore: IGetStore) => {
         const response = await ShopAPI.addProduct(name, price);
         console.log(response);
-        dispatch(getShop());
+        await dispatch(getShop());
     };
 
 // export const shop = (): ThunkAction<Return, IAppStore, ExtraArgument, IShopActions> =>

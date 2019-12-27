@@ -10,7 +10,6 @@ export const ShopAPI = {
         return instance.get(`shop/`,)
     },
     addProduct(productName: string, price: number) {
-        debugger
-        return instance.put(`shop/`, {id: `0.2541`, productName, price})
+        return instance.post(`shop/`, {product:{productName, price}})
     },
 };
