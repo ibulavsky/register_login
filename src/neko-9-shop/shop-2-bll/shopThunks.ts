@@ -15,6 +15,13 @@ export const getShop = (): ThunkAction<Return, IAppStore, ExtraArgument, IShopAc
         dispatch(getShopData(response.data));
     };
 
+export const addProduct = (name: string, price: number): ThunkAction<Return, IAppStore, ExtraArgument, IShopActions> =>
+    async (dispatch: ThunkDispatch<IAppStore, ExtraArgument, IShopActions>, getStore: IGetStore) => {
+        const response = await ShopAPI.addProduct(name, price);
+        console.log(response);
+        dispatch(getShop());
+    };
+
 // export const shop = (): ThunkAction<Return, IAppStore, ExtraArgument, IShopActions> =>
 //     async (dispatch: ThunkDispatch<IAppStore, ExtraArgument, IShopActions>, getStore: IGetStore) => {
 //     //     dispatch(addBoolean({name: REGISTER_IS_LOADING, value: true}));
