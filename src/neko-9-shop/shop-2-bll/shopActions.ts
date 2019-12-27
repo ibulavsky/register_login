@@ -1,11 +1,11 @@
-export const SHOP_SUCCESS = 'REGISTER-LOGIN-RESPONSE/REGISTER/REGISTER_SUCCESS';
-export const SHOP_ERROR = 'REGISTER-LOGIN-RESPONSE/REGISTER/REGISTER_ERROR';
-export const SHOP_IS_LOADING = 'REGISTER-LOGIN-RESPONSE/REGISTER/REGISTER_IS_LOADING';
+import {IShopData} from "./shopInitialState";
 
+export const GET_SHOP_DATA = 'SHOP/GET_SHOP_DATA';
 
-interface ISomeAction {
-    type: string
-}//
+interface IGetShopAction {
+    type: typeof GET_SHOP_DATA,
+    data: IShopData
+}
 
 // interface IRegisterUserDataAction {
 //     type: typeof REGISTER_USER_DATA,
@@ -22,15 +22,15 @@ interface ISomeAction {
 //     isFetching: boolean
 // }
 
-export type IShopActions = ISomeAction;
+export type IShopActions = IGetShopAction;
 
-//
-// export const registerUserData = (success: boolean) => {
-//     return {
-//         type: REGISTER_USER_DATA,
-//         success
-//     }
-// };
+
+export const getShopData = (data: IShopData) => {
+    return {
+        type: GET_SHOP_DATA,
+        data
+    }
+};
 //
 // export const registerError = (errorMessage: string) => {
 //     return {

@@ -1,17 +1,14 @@
 import {shopInitialState} from "./shopInitialState";
-import {IShopActions} from "./shopActions";
-//
-// export const REGISTER_USER_DATA = 'REGISTER/REGISTER-USER-DATA';
-// export const REGISTER_ERROR = 'REGISTER/REGISTER-ERROR';
-// export const TOGGLE_IS_FETCHING = 'REGISTER/TOGGLE-IS-FETCHING';
+import {GET_SHOP_DATA, IShopActions} from "./shopActions";
+
 
 export const shopReducer = (state = shopInitialState, action: IShopActions) => {
     switch (action.type) {
-        // case REGISTER_USER_DATA:
-        //     return {
-        //         ...state,
-        //         success: action.success
-        //     };
+        case GET_SHOP_DATA:
+            return {
+                ...state,
+                data: action.data
+            };
         // case REGISTER_ERROR :
         //     return {
         //         ...state,

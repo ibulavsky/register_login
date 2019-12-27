@@ -11,6 +11,18 @@ type Return = void;
 type ExtraArgument = {};
 type IGetStore = () => IAppStore;
 
+export const getShop = (): ThunkAction<Return, IAppStore, ExtraArgument, IBooleanActions> =>
+    async (dispatch: ThunkDispatch<IAppStore, ExtraArgument, IBooleanActions | IShopActions>, getStore: IGetStore) => {
+    //     dispatch(addBoolean({name: REGISTER_IS_LOADING, value: true}));
+    //     const response = await RegisterAPI.getSuccessRegister(email, passwordCoding(passwordFirst));
+    //     dispatch(addBoolean({name: REGISTER_IS_LOADING, value: false}));
+    //     if (response.data.success) {
+    //         dispatch(addBoolean({name: REGISTER_SUCCESS, value: true}));
+    //     } else {
+    //         dispatch(addBoolean({name: REGISTER_ERROR, value: true, message: response.data.error}))
+    //     }
+    };
+
 export const shop = (): ThunkAction<Return, IAppStore, ExtraArgument, IBooleanActions> =>
     async (dispatch: ThunkDispatch<IAppStore, ExtraArgument, IBooleanActions | IShopActions>, getStore: IGetStore) => {
     //     dispatch(addBoolean({name: REGISTER_IS_LOADING, value: true}));

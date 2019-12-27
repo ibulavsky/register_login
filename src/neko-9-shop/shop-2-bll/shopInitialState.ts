@@ -1,11 +1,36 @@
 export interface IShopState {
-    success: boolean,
-    errorMessage: string,
-    isFetching: boolean,
+    data: IShopData
 }
 
+export interface IShopData {
+    products: IShopProduct[]
+    minPrice: number
+    maxPrice: number
+    productTotalCount: number
+    page: number
+    pageCount: number
+}
+
+export interface IShopProduct {
+    id: string,
+    productName: string,
+    price: number
+}
+
+
 export const shopInitialState: IShopState = {
-    success: false,
-    errorMessage: '',
-    isFetching: false,
+    data: {
+        products: [
+            {
+                id: '0.2342353626',
+                productName: 'car1',
+                price: 3000,
+            },
+        ],
+        minPrice: 1000,
+        maxPrice: 5000,
+        productTotalCount: 3,
+        page: 1,
+        pageCount: 7,
+    }
 };
