@@ -5,7 +5,6 @@ import {ISignInActions, LOGIN_SUCCESS} from "../../neko-2-sign-in/sign-in-2-bll/
 import {addBoolean} from "../../neko-7-boolean/boolean-2-bll/booleanActions";
 import {getCookie, setCookie} from "../../neko-5-helpers/cookies/cookies";
 import {ProfileAPI} from "../neko-3-dal/NekoAPI";
-import {signInSuccess} from "../../neko-2-sign-in/sign-in-2-bll/signInSelectors";
 
 type Return = void;
 type ExtraArgument = {};
