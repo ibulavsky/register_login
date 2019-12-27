@@ -1,13 +1,29 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Range, getTrackBackground} from 'react-range';
 
 
 const ShopSearchPage: React.FC = () => {
 
+    const [searchProduct, changeSearchWord] = useState('');
+
+
+    const startSearch = (e: any) => {
+        // changeSearchWord(e.currentTarget.value);
+        // console.log(e.currentTarget.value)
+    };
+
     return (
-        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', width: '100vw', height: '100px',}}>
+        <div style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-around',
+            alignItems: 'center',
+            width: '100vw',
+            height: '100px',
+        }}>
             <div>
-                Search:<input type="text" placeholder='Product name'/>
+                <input type="text" placeholder='Product name'/><button onClick={startSearch}>Search</button>
+                <div>{searchProduct}</div>
             </div>
             <div>
                 <PriceRange/>
@@ -30,8 +46,7 @@ interface IPriceRangeProps {
 
 }
 
-export const PriceRange: React.FC<IPriceRangeProps> = ({
-                                                           // loading,
+export const PriceRange: React.FC<IPriceRangeProps> = ({// loading,
                                                            // error,
                                                            //
                                                            // name,
