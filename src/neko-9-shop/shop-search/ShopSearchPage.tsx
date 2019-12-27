@@ -6,10 +6,12 @@ const ShopSearchPage: React.FC = () => {
 
     const [searchProduct, changeSearchWord] = useState('');
 
+    const saveSearchWord = (e: any) => {
+        changeSearchWord(e.currentTarget.value);
+    };
 
-    const startSearch = (e: any) => {
-        // changeSearchWord(e.currentTarget.value);
-        // console.log(e.currentTarget.value)
+    const startSearch = () => {
+        console.log(searchProduct)
     };
 
     return (
@@ -22,8 +24,8 @@ const ShopSearchPage: React.FC = () => {
             height: '100px',
         }}>
             <div>
-                <input type="text" placeholder='Product name'/><button onClick={startSearch}>Search</button>
-                <div>{searchProduct}</div>
+                <input type="text" placeholder='Product name' onChange={saveSearchWord}/>
+                <button onClick={startSearch}>Search</button>
             </div>
             <div>
                 <PriceRange/>
