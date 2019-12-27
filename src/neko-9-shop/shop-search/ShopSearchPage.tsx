@@ -1,5 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Range, getTrackBackground} from 'react-range';
+import {searchProductData} from "../shop-2-bll/shopActions";
 
 
 const ShopSearchPage: React.FC = () => {
@@ -11,7 +12,8 @@ const ShopSearchPage: React.FC = () => {
     };
 
     const startSearch = () => {
-        console.log(searchProduct)
+        searchProductData(searchProduct);
+        changeSearchWord('')
     };
 
     return (
@@ -24,7 +26,7 @@ const ShopSearchPage: React.FC = () => {
             height: '100px',
         }}>
             <div>
-                <input type="text" placeholder='Product name' onChange={saveSearchWord}/>
+                <input type="text" placeholder='Product name' onChange={saveSearchWord} value={searchProduct}/>
                 <button onClick={startSearch}>Search</button>
             </div>
             <div>

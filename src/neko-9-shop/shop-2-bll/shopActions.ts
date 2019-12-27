@@ -1,45 +1,32 @@
 import {IShopData} from "./shopInitialState";
 
 export const GET_SHOP_DATA = 'SHOP/GET_SHOP_DATA';
+export const SEARCH_PRODUCT_DATA = 'SHOP/SEARCH_PRODUCT_DATA';
 
 interface IGetShopAction {
     type: typeof GET_SHOP_DATA,
     data: IShopData
 }
 
-// interface IRegisterUserDataAction {
-//     type: typeof REGISTER_USER_DATA,
-//     success: boolean
-// }
-//
-// interface IRegisterErrorAction {
-//     type: typeof REGISTER_ERROR,
-//     errorMessage: string
-// }
-//
-// interface IRegisterIsFetchingAction {
-//     type: typeof TOGGLE_IS_FETCHING,
-//     isFetching: boolean
-// }
+interface ISearchProductDataAction {
+    type: typeof SEARCH_PRODUCT_DATA,
+    searchProduct: string
+}
 
-export type IShopActions = IGetShopAction;
+export type IShopActions = IGetShopAction | ISearchProductDataAction;
 
 
-export const getShopData = (data: IShopData) => {
+export const getShopData = (data: IShopData): IShopActions => {
     return {
         type: GET_SHOP_DATA,
         data
     }
 };
-//
-// export const registerError = (errorMessage: string) => {
-//     return {
-//         type: REGISTER_ERROR, errorMessage
-//     }
-// };
-// export const toogleIsFetching = (isFetching: boolean) => {
-//     return {
-//         type: TOGGLE_IS_FETCHING, isFetching
-//     }
-// };
+export const searchProductData = (searchProduct: string): IShopActions => {
+    return {
+        type: SEARCH_PRODUCT_DATA,
+        searchProduct
+    }
+};
+
 
