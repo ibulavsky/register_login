@@ -51,13 +51,7 @@ const ModalMessageComponent: React.FC = () => {
         return (
             <div style={{display: "flex", justifyContent: "center", alignItems: "center",}}>
                 <button onClick={() => setShow(true)}>show Message Moved Modal</button>
-                <ModalMessage
-                    show={show}
-                    blackout={true}
-                    top={top}
-                >
-                    Try
-                </ModalMessage>
+                <ModalMessage show={show} blackout={true} top={top}>Try</ModalMessage>
             </div>
         );
     }
