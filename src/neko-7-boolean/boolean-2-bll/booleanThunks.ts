@@ -6,7 +6,7 @@ type Return = void;
 type ExtraArgument = {};
 type IGetStore = () => IAppStore;
 
-export const getMe = (): ThunkAction<Return, IAppStore, ExtraArgument, IBooleanActions> =>
+export const getMeExample = (): ThunkAction<Return, IAppStore, ExtraArgument, IBooleanActions> =>
     async (dispatch: ThunkDispatch<IAppStore, ExtraArgument, IBooleanActions>, getStore: IGetStore) => {
 
     };
