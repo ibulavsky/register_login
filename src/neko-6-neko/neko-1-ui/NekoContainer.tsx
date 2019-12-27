@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Neko from "./Neko";
-import {getCookie, setCookie} from "../../neko-0-common/cookies";
+import {getCookie, setCookie} from "../../neko-5-helpers/cookies/cookies";
 import {getMe} from '../neko-2-bll/nekoThunks';
 import {useDispatch, useSelector} from "react-redux";
 import {IAppStore} from "../../neko-1-main/main-2-bll/store";

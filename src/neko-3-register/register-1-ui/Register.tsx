@@ -15,7 +15,11 @@ interface RegisterProps {
     errorMessage: string | undefined
 }
 
-const Register: React.FC<RegisterProps> = ({email, passwordFirst, passwordSecond, onSetEmail, onSetFirstPassword, onSetSecondPassword, onSubmit, errorMessage}) => {
+const Register: React.FC<RegisterProps> = ({
+                                               email, passwordFirst, passwordSecond,
+                                               onSetEmail, onSetFirstPassword, onSetSecondPassword,
+                                               onSubmit, errorMessage
+                                           }) => {
 
 
     return (

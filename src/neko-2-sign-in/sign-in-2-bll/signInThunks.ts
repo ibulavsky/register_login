@@ -2,9 +2,10 @@ import {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {IAppStore} from "../../neko-1-main/main-2-bll/store";
 import {ISignInActions, LOGIN_ERROR, LOGIN_IS_LOADING, LOGIN_SUCCESS} from "./signInActions";
 import {IProfileActions} from "../../neko-6-neko/neko-2-bll/nekoActions";
-import {localStorageAPI, SignInAPI} from "../sign-in-3-dal/SignInAPI";
+import {SignInAPI} from "../sign-in-3-dal/SignInAPI";
 import {addBoolean} from "../../neko-7-boolean/boolean-2-bll/booleanActions";
-import {setCookie} from "../../neko-0-common/cookies";
+import {setCookie} from "../../neko-5-helpers/cookies/cookies";
+import {passwordCoding} from "../../neko-5-helpers/password/passwordCoding";
 
 type Return = void;
 type ExtraArgument = {};
@@ -19,7 +20,7 @@ export const signIn = (email: string, password: string, rememberMe: boolean): Th
     async (dispatch: ThunkDispatch<IAppStore, ExtraArgument, ISignInActions | IProfileActions>, getStore: IGetStore) => {
         dispatch(addBoolean({name: LOGIN_IS_LOADING, value: true}));
         try {
-            const response = await SignInAPI.login(email, password, rememberMe);
+            const response = await SignInAPI.login(email, passwordCoding(password), rememberMe);
             dispatch(addBoolean({name: LOGIN_IS_LOADING, value: false}));
             if (response.data.error) {
                 dispatch(addBoolean({name: LOGIN_ERROR, value: true, message: response.data.error}));

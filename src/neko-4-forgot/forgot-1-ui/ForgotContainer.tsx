@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import Forgot from './Forgot';
 import {useDispatch, useSelector} from "react-redux";
-import {emailValidate} from "../../neko-0-common/validators/validator";
+import {emailValidate} from "../../neko-5-helpers/validators/validator";
 import {forgot} from "../forgot-2-bll/forgotThunks";
 import {FORGOT_ERROR} from "../forgot-2-bll/forgotActions";
 import {addBoolean} from "../../neko-7-boolean/boolean-2-bll/booleanActions";
 import {forgotErrorMessage, forgotLoading} from "../forgot-2-bll/forgotSelectors";
-import Preloader from "../../neko-0-common/common-1-ui/Preloader";
+import Preloader from "../../neko-0-common/preloader/Preloader";
 
 
 interface IPropsForgotMail {

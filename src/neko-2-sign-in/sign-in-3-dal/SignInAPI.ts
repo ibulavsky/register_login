@@ -13,16 +13,3 @@ export const SignInAPI = {
         return instance.post(`auth/login`, {email, password, rememberMe})
     }
 };
-
-export const localStorageAPI = {
-    saveToken(token: string) {
-        return Promise.resolve(
-            localStorage.setItem('token', token)
-        )
-    },
-    loadToken() {
-        return Promise.resolve(
-            localStorage.getItem('token')
-        )
-    }
-};
