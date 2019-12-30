@@ -2,6 +2,7 @@ import {IShopData} from "./shopInitialState";
 
 export const GET_SHOP_DATA = 'SHOP/GET_SHOP_DATA';
 export const SEARCH_PRODUCT_DATA = 'SHOP/SEARCH_PRODUCT_DATA';
+export const CHANGE_PAGE = 'SHOP/CHANGE_PAGE';
 
 interface IGetShopAction {
     type: typeof GET_SHOP_DATA,
@@ -13,7 +14,12 @@ interface ISearchProductDataAction {
     searchProduct: string
 }
 
-export type IShopActions = IGetShopAction | ISearchProductDataAction;
+interface IChangePageAction {
+    type: typeof CHANGE_PAGE,
+    numberPage: number
+}
+
+export type IShopActions = IGetShopAction | ISearchProductDataAction | IChangePageAction ;
 
 
 export const getShopData = (data: IShopData): IShopActions => {
@@ -29,4 +35,10 @@ export const searchProductData = (searchProduct: string): IShopActions => {
     }
 };
 
+export const changePage = (numberPage: number): IShopActions => {
+    return {
+        type: CHANGE_PAGE,
+        numberPage
+    }
+};
 

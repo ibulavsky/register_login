@@ -26,8 +26,8 @@ const ShopSearchPage: React.FC = () => {
             height: '100px',
         }}>
             <div>
-                <input type="text" placeholder='Product name' onChange={saveSearchWord} value={searchProduct}/>
-                <button onClick={startSearch}>Search</button>
+                <input type="text" placeholder='Product name' onChange={saveSearchWord} value={searchProduct} style={{border: '1px solid blue'}}/>
+                <button onClick={startSearch} style={{border: '1px solid blue'}}>Search</button>
             </div>
             <div>
                 <PriceRange/>
