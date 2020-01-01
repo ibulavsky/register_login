@@ -1,5 +1,5 @@
 import {shopInitialState} from "./shopInitialState";
-import {GET_SHOP_DATA, IShopActions} from "./shopActions";
+import {GET_SHOP_DATA, IShopActions, SEARCH_PRODUCT_DATA} from "./shopActions";
 
 
 export const shopReducer = (state = shopInitialState, action: IShopActions) => {
@@ -9,17 +9,11 @@ export const shopReducer = (state = shopInitialState, action: IShopActions) => {
                 ...state,
                 data: action.data
             };
-        // case REGISTER_ERROR :
-        //         //     return {
-        //         //         ...state,
-        //         //         errorMessage: action.errorMessage
-        //         //     };
-        //         // case TOGGLE_IS_FETCHING: {
-        //         //     return {
-        //         //         ...state,
-        //         //         isFetching: action.isFetching
-        //         //     }
-        //         // }
+        case SEARCH_PRODUCT_DATA :
+            return {
+                ...state,
+                searchProduct: action.searchProduct
+            };
         default: {
             return state;
         }
