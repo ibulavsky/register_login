@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Modals from "../../../neko-8-modals/modals-1-ui/ModalInput/ModalInput";
+import Modals from "../../../../neko-8-modals/modals-1-ui/ModalInput/ModalInput";
 
 interface IObjectStyle {
     width: string
@@ -11,7 +11,7 @@ interface IModalProps {
     style: IObjectStyle
 }
 
-const UpdateAndAddModal: React.FC<IModalProps> = ({setProduct, title, style}) => {
+const UpdateProductModal: React.FC<IModalProps> = ({setProduct, title, style}) => {
     const [show, setShow] = useState(false);
     const [name, setName] = useState("Car");
     const [price, setPrice] = useState(5000);
@@ -22,7 +22,7 @@ const UpdateAndAddModal: React.FC<IModalProps> = ({setProduct, title, style}) =>
     };
 
     return (
-        <div style={{...style, display: "flex", justifyContent: "center", alignItems: "center"}}>
+        <>
             <button onClick={() => setShow(true)}>{title}</button>
             <Modals show={show} blackout={true}>
                 <div style={{
@@ -42,8 +42,8 @@ const UpdateAndAddModal: React.FC<IModalProps> = ({setProduct, title, style}) =>
                     <button onClick={() => setShow(false)}>Exit</button>
                 </div>
             </Modals>
-        </div>
+        </>
     );
 };
 
-export default UpdateAndAddModal;
+export default UpdateProductModal;
