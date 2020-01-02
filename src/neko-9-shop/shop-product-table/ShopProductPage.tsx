@@ -4,6 +4,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {IAppStore} from "../../neko-1-main/main-2-bll/store";
 import {addProduct, getShop} from "../shop-2-bll/shopThunks";
 import {Button} from "./table/TableElements";
+import UpdateProductModal from "./table/modals/UpdateForm";
+import ProductDeleteModal from "./table/modals/QuestionForm";
 
 const ShopProductPage: React.FC = () => {
 
@@ -11,15 +13,16 @@ const ShopProductPage: React.FC = () => {
 
     const dispatch = useDispatch();
 
-    // callbacks
-    const onAddProduct = (name: string = "Tesla", price: number = 5000) => {
+    // // callbacks
+    const onAddProduct = (name: string, price: number) => {
         dispatch(addProduct(name, price))
     };
-    const onUpdateProduct = () => {
-        alert('update')
+    const onUpdateProduct = (name: string, price: number) => {
+        alert(`${name} - ${price}`)
     };
-    const onDeleteProduct = () => {
-        alert('delete')
+
+    const onDeleteProduct = (id: number) => {
+        alert(`${id}`)
     };
     const onAddToCart = () => {
         alert('add to Cart')
@@ -43,15 +46,22 @@ const ShopProductPage: React.FC = () => {
                                                                                style={{width: '35%'}}> {dataItem.price} </div>
         },
         {
-            title: (i: number) => <Button key={i} onClickEvent={() => onAddProduct()} name="Add to table"
-                                          style={{width: '20%'}}/>,
+            title: (i: number) => <UpdateProductModal key={i} title='Add to table'
+                                                      setProduct={(name, price) => {
+                                                          onAddProduct(name, price)
+                                                      }}
+                                                      style={{width: '20%'}}/>,
             render:
-                (dataItem: any, modelIndex: number, dataIndex: number) => <>
-                    <Button key={modelIndex} name="Update" onClickEvent={() => onUpdateProduct()}
-                            style={{width: '10%'}}/>
-                    <Button key={modelIndex} name="Delete" onClickEvent={() => onDeleteProduct()}
-                            style={{width: '10%'}}/>
-                </>
+                (dataItem: any, modelIndex: number, dataIndex: number) => <div key={modelIndex} style={{
+                    width: '20%',
+                    textAlign: 'center'
+                }}>
+                    <UpdateProductModal key={modelIndex} title="Update"
+                                        setProduct={(name, price) => onUpdateProduct(name, price)}
+                                        style={{width: '10%'}}/>
+                    <ProductDeleteModal id={dataItem.id} title='Delete' style={{width: '10%'}}
+                                        deleteProduct={(id) => onDeleteProduct(id)}/>
+                </div>
         },
         {
             title: (i: number) => <div key={i} style={{width: '10%', textAlign: 'center'}}><a href={'#'}>Cart</a></div>,
@@ -71,6 +81,7 @@ const ShopProductPage: React.FC = () => {
                 model={model}
                 data={productsData}
             />
+
         </>
     )
 };
