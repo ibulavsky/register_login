@@ -35,9 +35,9 @@ const ShopProductPage: React.FC = () => {
 
     const model = [
         {
-            title: (i: number) => <div key={i} style={{width: '35%'}}> Product </div>,
+            title: (i: number) => <div key={i} style={{width: '30%'}}> Product </div>,
             render: (dataItem: any, modelIndex: number, dataIndex: number) => <div key={modelIndex}
-                                                                                   style={{width: '35%'}}> {dataItem.productName}</div>
+                                                                                   style={{width: '30%'}}> {dataItem.productName}</div>
         },
         {
             title: (i: number) => <div key={i} style={{width: '35%'}}><span>Price</span>
@@ -55,10 +55,10 @@ const ShopProductPage: React.FC = () => {
                                                       setProduct={(name, price) => {
                                                           onAddProduct(name, price)
                                                       }}
-                                                      style={{width: '20%'}}/>,
+                                                      style={{width: '15%'}}/>,
             render:
                 (dataItem: any, modelIndex: number, dataIndex: number) => <div key={modelIndex} style={{
-                    width: '20%',
+                    width: '15%',
                     textAlign: 'center'
                 }}>
                     <UpdateProductModal key={modelIndex} title="Update"
