@@ -40,7 +40,12 @@ const ShopProductPage: React.FC = () => {
                                                                                    style={{width: '35%'}}> {dataItem.productName}</div>
         },
         {
-            title: (i: number) => <div key={i} style={{width: '35%'}}> Price </div>,
+            title: (i: number) => <div key={i} style={{width: '35%'}}><span>Price</span>
+            <div>
+                <button>Big</button>
+                <button>Small</button>
+            </div>
+            </div>,
             render:
                 (dataItem: any, modelIndex: number, dataIndex: number) => <div key={modelIndex}
                                                                                style={{width: '35%'}}> {dataItem.price} </div>
