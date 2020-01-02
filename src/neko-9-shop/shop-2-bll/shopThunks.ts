@@ -21,6 +21,12 @@ export const addProduct = (name: string, price: number): ThunkAction<Return, IAp
         console.log(response);
         await dispatch(getShop());
     };
+export const updateProduct = (id: number, name: string, price: number): ThunkAction<Return, IAppStore, ExtraArgument, IShopActions> =>
+    async (dispatch: ThunkDispatch<IAppStore, ExtraArgument, IShopActions>, getStore: IGetStore) => {
+        const response = await ShopAPI.updateProduct(id, name, price);
+        console.log(response);
+        await dispatch(getShop());
+    };
 
 // export const shop = (): ThunkAction<Return, IAppStore, ExtraArgument, IShopActions> =>
 //     async (dispatch: ThunkDispatch<IAppStore, ExtraArgument, IShopActions>, getStore: IGetStore) => {
