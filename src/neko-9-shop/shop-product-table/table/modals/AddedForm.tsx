@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Modals from "../../../../neko-8-modals/modals-1-ui/ModalInput/ModalInput";
+import ModalForm from "./ModalForm";
 
 interface IObjectStyle {
     width: string
@@ -11,7 +11,7 @@ interface IModalProps {
     style: IObjectStyle
 }
 
-const UpdateProductModal: React.FC<IModalProps> = ({setProduct, title, style}) => {
+const AddedProductModal: React.FC<IModalProps> = ({setProduct, title, style}) => {
     const [show, setShow] = useState(false);
     const [name, setName] = useState("Car");
     const [price, setPrice] = useState(5000);
@@ -24,7 +24,7 @@ const UpdateProductModal: React.FC<IModalProps> = ({setProduct, title, style}) =
     return (
         <>
             <button onClick={() => setShow(true)}>{title}</button>
-            <Modals show={show} blackout={true}>
+            <ModalForm show={show} blackout={true}>
                 <div style={{
                     display: "flex",
                     flexDirection: "column",
@@ -41,9 +41,9 @@ const UpdateProductModal: React.FC<IModalProps> = ({setProduct, title, style}) =
                     <button onClick={() => onSubmit()}>Ok</button>
                     <button onClick={() => setShow(false)}>Exit</button>
                 </div>
-            </Modals>
+            </ModalForm>
         </>
     );
 };
 
-export default UpdateProductModal;
+export default AddedProductModal;
