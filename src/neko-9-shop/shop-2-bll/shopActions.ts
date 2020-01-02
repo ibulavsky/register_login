@@ -35,7 +35,7 @@ export const searchProductData = (searchProduct: string): IShopActions => {
     }
 };
 
-export const changePage = (numberPage: number): IShopActions => {
+export const changePageShop = (numberPage: number): IShopActions => {
     return {
         type: CHANGE_PAGE,
         numberPage

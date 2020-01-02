@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {changePage} from "../shop-2-bll/shopActions";
+import {changePageShop} from "../shop-2-bll/shopActions";
 import Paginator from "../shop-paginator/Paginator";
 import {connect} from 'react-redux';
 
@@ -12,17 +12,17 @@ const ShopSelectedPage: React.FC = () => {
     //     changeSearchWord(e.currentTarget.value);
     // };
 
-    const onPageChanged = (pageNumber: number) => {
+    const changePage = (pageNumber: number) => {
         // const {pageSize} = this.props;
         console.log(pageNumber);
-        changePage(pageNumber);
+        changePageShop(pageNumber);
     };
 
     return (
         <div>
             <div>
                 <Paginator
-                    onPageChanged={onPageChanged}
+                    changePage={changePage}
                     // selectedPage={props.selectedPage}
                 />
             </div>
