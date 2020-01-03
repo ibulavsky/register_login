@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import Table from "./table/Table";
 import {useDispatch, useSelector} from "react-redux";
 import {IAppStore} from "../../neko-1-main/main-2-bll/store";
-import {addProduct, getShop, updateProduct} from "../shop-2-bll/shopThunks";
+import {addProduct, getShop, updateProduct, deleteProduct} from "../shop-2-bll/shopThunks";
 import {Button} from "./table/TableElements";
 import AddedProductModal from "./table/modals/AddedForm";
 import ProductDeleteModal from "./table/modals/QuestionForm";
@@ -23,7 +23,7 @@ const ShopProductPage: React.FC = () => {
     };
 
     const onDeleteProduct = (id: number) => {
-        alert(`${id}`)
+        dispatch(deleteProduct(id))
     };
     const onAddToCart = () => {
         alert('add to Cart')

@@ -15,4 +15,7 @@ export const ShopAPI = {
     updateProduct(id: number, productName: string, price: number) {
         return instance.put(`shop/`, {product:{id, productName, price}})
     },
+    deleteProduct(id: number) {
+        return instance.delete(`shop/?id=${id}`)
+    },
 };

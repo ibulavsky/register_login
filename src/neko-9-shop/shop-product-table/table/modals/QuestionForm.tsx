@@ -15,8 +15,8 @@ interface IModalQuestionProps {
 const ProductDeleteModal: React.FC<IModalQuestionProps> = ({id, style, title, deleteProduct}) => {
     const [show, setShow] = useState(false);
     const onSubmit = () => {
+        deleteProduct(id);
         setShow(false);
-        deleteProduct(id)
     };
 
     const onExit = () => {
