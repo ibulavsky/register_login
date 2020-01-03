@@ -8,9 +8,12 @@ type Return = void;
 type ExtraArgument = {};
 type IGetStore = () => IAppStore;
 
-export const getShop = (): ThunkAction<Return, IAppStore, ExtraArgument, IShopActions> =>
+export type INum = number | undefined;
+export type IStr = string | undefined;
+
+export const getShop = (searchProduct: IStr = '', minPrice: INum = 1000, maxPrice: INum = 5000, currentPage: INum = undefined, pageCount: INum = undefined, sort: IStr = undefined): ThunkAction<Return, IAppStore, ExtraArgument, IShopActions> =>
     async (dispatch: ThunkDispatch<IAppStore, ExtraArgument, IShopActions>, getStore: IGetStore) => {
-        const response = await ShopAPI.getShopData();
+        const response = await ShopAPI.getShopData(searchProduct, minPrice, maxPrice, currentPage, pageCount, sort);
         console.log(response);
         dispatch(getShopData(response.data));
     };

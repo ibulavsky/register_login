@@ -1,5 +1,5 @@
 import {shopInitialState} from "./shopInitialState";
-import {CHANGE_PAGE, GET_SHOP_DATA, IShopActions, SEARCH_PRODUCT_DATA} from "./shopActions";
+import { GET_SHOP_DATA, IShopActions, SEARCH_PRODUCT_DATA,} from "./shopActions";
 
 
 export const shopReducer = (state = shopInitialState, action: IShopActions) => {
@@ -14,11 +14,11 @@ export const shopReducer = (state = shopInitialState, action: IShopActions) => {
                 ...state,
                 searchProduct: action.searchProduct
             };
-        case CHANGE_PAGE:
-            return {
-                ...state,
-                numberPage: action.numberPage
-            };
+        // case CHANGE_PAGE:
+        //     return {
+        //         ...state,
+        //         numberPage: action.numberPage
+        //     };
         default: {
             return state;
         }
