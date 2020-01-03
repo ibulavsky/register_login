@@ -9,6 +9,7 @@ export interface IShopData {
     productTotalCount: number
     page: number
     pageCount: number
+    searchProduct: string
 }
 
 export interface IShopProduct {
@@ -32,5 +33,6 @@ export const shopInitialState: IShopState = {
         productTotalCount: 3,
         page: 1,
         pageCount: 7,
+        searchProduct: ''
     }
 };

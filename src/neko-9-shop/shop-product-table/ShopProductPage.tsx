@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Table from "./table/Table";
 import {useDispatch, useSelector} from "react-redux";
 import {IAppStore} from "../../neko-1-main/main-2-bll/store";
@@ -11,6 +11,8 @@ import UpdateProductModal from "./table/modals/UpdatedForm";
 const ShopProductPage: React.FC = () => {
 
     const productsData = useSelector((store: IAppStore) => store.shop.data.products);
+
+    const [colorButtonSort, changeColorSort] = useState(true);
 
     const dispatch = useDispatch();
 
@@ -29,6 +31,10 @@ const ShopProductPage: React.FC = () => {
         alert('add to Cart')
     };
 
+    const onClickSort = (status: boolean) => {
+        changeColorSort(status)
+    };
+
 
     useEffect(() => {
         dispatch(getShop());
@@ -42,10 +48,14 @@ const ShopProductPage: React.FC = () => {
         },
         {
             title: (i: number) => <div key={i} style={{width: '35%'}}><span>Price</span>
-            <div>
-                <button>Big</button>
-                <button>Small</button>
-            </div>
+                <div>
+                    <button style={{backgroundColor: colorButtonSort === true ? 'blue' : 'white'}}
+                            onClick={() => onClickSort(true)}>Big
+                    </button>
+                    <button style={{backgroundColor: colorButtonSort === false ? 'blue' : 'white'}}
+                            onClick={() => onClickSort(false)}>Small
+                    </button>
+                </div>
             </div>,
             render:
                 (dataItem: any, modelIndex: number, dataIndex: number) => <div key={modelIndex}

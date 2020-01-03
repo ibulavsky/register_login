@@ -1,18 +1,35 @@
 import React, {useState} from 'react';
 import {Range, getTrackBackground} from 'react-range';
-import {searchProductData} from "../shop-2-bll/shopActions";
+import {useDispatch, useSelector} from "react-redux";
+import {getShop} from '../shop-2-bll/shopThunks';
+import {IAppStore} from "../../neko-1-main/main-2-bll/store";
+import { searchProductData } from '../shop-2-bll/shopActions';
 
 
 const ShopSearchPage: React.FC = () => {
 
-    const [searchProduct, changeSearchWord] = useState('');
+    const [search, changeSearchWord] = useState('');
+    const [values, setValues] = useState([1000, 5000]);
+
+    const dispatch = useDispatch();
+    const productTotalCount = useSelector((store: IAppStore) => store.shop.data.productTotalCount);
+    const pageCount = useSelector((store: IAppStore) => store.shop.data.pageCount);
+    const page = useSelector((store: IAppStore) => store.shop.data.page);
+    const searchProduct = useSelector((store: IAppStore) => store.shop.data.searchProduct);
+
 
     const saveSearchWord = (e: any) => {
         changeSearchWord(e.currentTarget.value);
     };
 
+    const setRange = (values: Array<number>) => {
+        setValues(values);
+    };
+
     const startSearch = () => {
-        searchProductData(searchProduct);
+        // Исправить и уничтожить гавнокод
+        dispatch(searchProductData(search));
+        dispatch(getShop(search, values[0], values[1]));
         changeSearchWord('')
     };
 
@@ -26,11 +43,12 @@ const ShopSearchPage: React.FC = () => {
             height: '100px',
         }}>
             <div>
-                <input type="text" placeholder='Product name' onChange={saveSearchWord} value={searchProduct} style={{border: '1px solid blue'}}/>
+                <input type="text" placeholder='Product name' onChange={saveSearchWord} value={searchProduct}
+                       style={{border: '1px solid blue'}}/>
                 <button onClick={startSearch} style={{border: '1px solid blue'}}>Search</button>
             </div>
             <div>
-                <PriceRange/>
+                <PriceRange setRange={setRange}/>
             </div>
         </div>
     );
@@ -40,6 +58,7 @@ export default ShopSearchPage;
 
 
 interface IPriceRangeProps {
+    setRange: (values: Array<number>) => void
     // loading: boolean;
     // error: string;
     //
@@ -50,15 +69,17 @@ interface IPriceRangeProps {
 
 }
 
-export const PriceRange: React.FC<IPriceRangeProps> = ({// loading,
-                                                           // error,
-                                                           //
-                                                           // name,
-                                                           //
-                                                           // logoutCallback,
+export const PriceRange: React.FC<IPriceRangeProps> = ({
+                                                           setRange
+// loading,// error,// name,// logoutCallback,
                                                        }) => {
 
     const [values, setValues] = useState([1000, 5000]);
+
+    const onChangeRange = (values: Array<number>) => {
+        setValues(values);
+        setRange(values)
+    };
 
     return (
         <Range
@@ -66,7 +87,7 @@ export const PriceRange: React.FC<IPriceRangeProps> = ({// loading,
             step={500}
             min={1000}
             max={5000}
-            onChange={values => setValues(values)}
+            onChange={(values) => onChangeRange(values)}
             renderTrack={({props, children}) => (
                 <div
                     onMouseDown={props.onMouseDown}
@@ -89,7 +110,7 @@ export const PriceRange: React.FC<IPriceRangeProps> = ({// loading,
                                 values: values,
                                 colors: ['#ccc', '#548BF4', '#ccc'],
                                 min: 1000,
-                                max: 5000
+                                max: 5000,
                             }),
                             alignSelf: 'center'
                         }}

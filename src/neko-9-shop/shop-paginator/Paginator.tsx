@@ -1,24 +1,29 @@
 import React, {useState} from 'react';
 
 interface IPaginatorProps {
-    // selectedPage: number,
     changePage: (p: number) => void,
+    productTotalCount: number,
+    page: number,
+    pageCount: number,
+    changePageSize: (pageCount: number)=> void
 }
 
 const Paginator: React.FC<IPaginatorProps> = (
     {
-        // selectedPage,
-        changePage
+        changePage,
+        productTotalCount,
+        page,
+        pageCount,
+        changePageSize
     }
 ) => {
 
-    let totalItemsCount = 50;
     let portionSize = 5;
 
-    let [pageSize, changePageSize] = useState(5);
-    let [selectedPage, changePageLoc] = useState(1);
+    // let [pageSize, changePageSize] = useState(5);
+    // let [selectedPage, changePageLoc] = useState(1);
 
-    let pagesCount = Math.ceil(totalItemsCount / pageSize);
+    let pagesCount = Math.ceil(productTotalCount / pageCount);
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
@@ -39,7 +44,6 @@ const Paginator: React.FC<IPaginatorProps> = (
     };
 
     const onChangePage = (p: number) => {
-        changePageLoc(p);
         changePage(p);
     };
 
@@ -76,7 +80,7 @@ const Paginator: React.FC<IPaginatorProps> = (
                         width: '15px',
                         border: '1px solid blue',
                         height: '20px',
-                        backgroundColor: selectedPage === p ? 'blue': 'white'
+                        backgroundColor: page === p ? 'blue' : 'white'
                     }} onClick={() => onChangePage(p)}>{p}</span>
                 })}
             {portionCount > portionNumber && <button onClick={clickRight}>R</button>}
