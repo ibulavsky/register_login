@@ -12,4 +12,10 @@ export const ShopAPI = {
     addProduct(productName: string, price: number) {
         return instance.post(`shop/`, {product:{productName, price}})
     },
+    updateProduct(id: number, productName: string, price: number) {
+        return instance.put(`shop/`, {product:{id, productName, price}})
+    },
+    deleteProduct(id: number) {
+        return instance.delete(`shop/?id=${id}`)
+    },
 };

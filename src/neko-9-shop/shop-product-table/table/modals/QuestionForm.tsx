@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Modals from "../../../../neko-8-modals/modals-1-ui/ModalQuestion/ModalQuestion";
+import ModalForm from "./ModalForm";
 
 interface IObjectStyle {
     width: string
@@ -15,8 +15,8 @@ interface IModalQuestionProps {
 const ProductDeleteModal: React.FC<IModalQuestionProps> = ({id, style, title, deleteProduct}) => {
     const [show, setShow] = useState(false);
     const onSubmit = () => {
+        deleteProduct(id);
         setShow(false);
-        deleteProduct(id)
     };
 
     const onExit = () => {
@@ -26,18 +26,18 @@ const ProductDeleteModal: React.FC<IModalQuestionProps> = ({id, style, title, de
     return (
         <>
             <button onClick={() => setShow(true)}>{title}</button>
-            <Modals show={show} blackout={true}>
+            <ModalForm show={show} blackout={true}>
                 <div style={{
                     display: "flex",
                     flexDirection: "row",
                     alignItems: "center",
                     justifyContent: "center"
                 }}>
-                    Delete Product:
+                    <span>Delete Product: </span>
                     <button onClick={() => onSubmit()}>YES</button>
                     <button onClick={() => onExit()}>NO</button>
                 </div>
-            </Modals>
+            </ModalForm>
         </>
     );
 };

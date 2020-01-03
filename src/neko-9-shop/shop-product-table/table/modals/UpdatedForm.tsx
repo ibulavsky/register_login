@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Modals from "../../../../neko-8-modals/modals-1-ui/ModalInput/ModalInput";
+import ModalForm from "./ModalForm";
 
 interface IObjectStyle {
     width: string
@@ -9,12 +9,14 @@ interface IModalProps {
     setProduct: (name: string, price: number) => void
     title: string
     style: IObjectStyle
+    name: string
+    price: number
 }
 
-const UpdateProductModal: React.FC<IModalProps> = ({setProduct, title, style}) => {
+const UpdateProductModal: React.FC<IModalProps> = ({setProduct, title, style, ...props}) => {
     const [show, setShow] = useState(false);
-    const [name, setName] = useState("Car");
-    const [price, setPrice] = useState(5000);
+    const [name, setName] = useState(props.name);
+    const [price, setPrice] = useState(props.price);
 
     const onSubmit = () => {
         setProduct(name, price);
@@ -24,7 +26,7 @@ const UpdateProductModal: React.FC<IModalProps> = ({setProduct, title, style}) =
     return (
         <>
             <button onClick={() => setShow(true)}>{title}</button>
-            <Modals show={show} blackout={true}>
+            <ModalForm show={show} blackout={true}>
                 <div style={{
                     display: "flex",
                     flexDirection: "column",
@@ -32,16 +34,16 @@ const UpdateProductModal: React.FC<IModalProps> = ({setProduct, title, style}) =
                     justifyContent: "center"
                 }}>
                     Product:
-                    <input type="text" placeholder='Product name' onChange={(e) => {
+                    <input type="text" placeholder='Product name' value={name} onChange={(e) => {
                         setName(e.currentTarget.value)
                     }}/>
-                    <input type="text" placeholder='Price' onChange={(e) => {
+                    <input type="text" placeholder='Price' value={price} onChange={(e) => {
                         setPrice(+e.currentTarget.value)
                     }}/>
                     <button onClick={() => onSubmit()}>Ok</button>
                     <button onClick={() => setShow(false)}>Exit</button>
                 </div>
-            </Modals>
+            </ModalForm>
         </>
     );
 };

@@ -2,10 +2,11 @@ import React, {useEffect} from 'react';
 import Table from "./table/Table";
 import {useDispatch, useSelector} from "react-redux";
 import {IAppStore} from "../../neko-1-main/main-2-bll/store";
-import {addProduct, getShop} from "../shop-2-bll/shopThunks";
+import {addProduct, getShop, updateProduct, deleteProduct} from "../shop-2-bll/shopThunks";
 import {Button} from "./table/TableElements";
-import UpdateProductModal from "./table/modals/UpdateForm";
+import AddedProductModal from "./table/modals/AddedForm";
 import ProductDeleteModal from "./table/modals/QuestionForm";
+import UpdateProductModal from "./table/modals/UpdatedForm";
 
 const ShopProductPage: React.FC = () => {
 
@@ -17,12 +18,12 @@ const ShopProductPage: React.FC = () => {
     const onAddProduct = (name: string, price: number) => {
         dispatch(addProduct(name, price))
     };
-    const onUpdateProduct = (name: string, price: number) => {
-        alert(`${name} - ${price}`)
+    const onUpdateProduct = (id: number, name: string, price: number) => {
+        dispatch(updateProduct(id, name, price))
     };
 
     const onDeleteProduct = (id: number) => {
-        alert(`${id}`)
+        dispatch(deleteProduct(id))
     };
     const onAddToCart = () => {
         alert('add to Cart')
@@ -51,20 +52,23 @@ const ShopProductPage: React.FC = () => {
                                                                                style={{width: '35%'}}> {dataItem.price} </div>
         },
         {
-            title: (i: number) => <UpdateProductModal key={i} title='Add to table'
-                                                      setProduct={(name, price) => {
-                                                          onAddProduct(name, price)
-                                                      }}
-                                                      style={{width: '15%'}}/>,
+            title: (i: number) => <div style={{width: '15%', textAlign: 'center'}}><AddedProductModal key={i}
+                                                                                                      title='Add'
+                                                                                                      setProduct={(name, price) => {
+                                                                                                          onAddProduct(name, price)
+                                                                                                      }}
+                                                                                                      style={{width: '15%'}}/>
+            </div>,
             render:
                 (dataItem: any, modelIndex: number, dataIndex: number) => <div key={modelIndex} style={{
                     width: '15%',
                     textAlign: 'center'
                 }}>
-                    <UpdateProductModal key={modelIndex} title="Update"
-                                        setProduct={(name, price) => onUpdateProduct(name, price)}
-                                        style={{width: '10%'}}/>
-                    <ProductDeleteModal id={dataItem.id} title='Delete' style={{width: '10%'}}
+                    <UpdateProductModal key={modelIndex} title="Update" name={dataItem.productName}
+                                        price={dataItem.price}
+                                        setProduct={(name, price) => onUpdateProduct(dataItem.id, name, price)}
+                                        style={{width: '7.5%'}}/>
+                    <ProductDeleteModal id={dataItem.id} title='Delete' style={{width: '7.5%'}}
                                         deleteProduct={(id) => onDeleteProduct(id)}/>
                 </div>
         },
